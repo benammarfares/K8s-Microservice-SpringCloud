@@ -1,0 +1,46 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
+        - id: assurance
+          uri: lb://assurance
+          predicates:
+            - Path=/api/v1/assurance/**
+        - id: assurancePolicy
+          uri: lb://assurancePolicy
+          predicates:
+            - Path=/api/v1/assurancePolicy/**
+
+  config:
+    import: optional:configserver:http://localhost:9296
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-0
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+
+
