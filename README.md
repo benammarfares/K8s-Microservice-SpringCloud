@@ -50,7 +50,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![Pull configuration](https://github.com/user-attachments/assets/81d429dc-9c48-4c15-9600-646b2306d150)
+![Pull configuration (1)](https://github.com/user-attachments/assets/0b6f802b-cf68-4d7e-bb38-e8b6a6c2d5d6)
 
 <br>
 
