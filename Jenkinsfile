@@ -5,7 +5,6 @@ pipeline {
       agent any
     tools {
       maven "3.9.8"
-      docker 'docker'
     }
     stages {
         stage('Build Config Server') {
