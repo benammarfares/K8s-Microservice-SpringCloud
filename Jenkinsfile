@@ -6,6 +6,9 @@ pipeline {
     tools {
       maven "3.9.8"
     }
+    environment {
+        CUSTOM_WORKSPACE = "${WORKSPACE}/k8-cloud@2"
+    }
     stages {
         stage('Build Config Server') {
         agent any
@@ -14,7 +17,7 @@ pipeline {
                 script {
                     sh "pwd"
                     sh "ls -la"
-                    dir("cloud-config-server") {
+                    dir(""${CUSTOM_WORKSPACE}/cloud-config-server"") {
                       sh 'mvn clean package -DskipTests'
                     }
                 }
@@ -27,7 +30,7 @@ pipeline {
             script {
                 sh "pwd"
                 sh "ls -la"
-                dir("cloud-config-server") {
+                dir(""${CUSTOM_WORKSPACE}/cloud-config-server"") {
                     sh 'docker build -t fares121/cloud-config-server:1.0.0 .'
                       withCredentials([string(credentialsId: 'Docker', variable: 'docker_password')]) {
                         sh 'docker login -u fares121 -p ${docker_password}'
