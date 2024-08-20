@@ -17,7 +17,7 @@ pipeline {
                 script {
                     sh "pwd"
                     sh "ls -la"
-                    dir("${CUSTOM_WORKSPACE}/cloud-config-server") {
+                    dir("cloud-config-server") {
                       sh 'mvn clean package -DskipTests'
                     }
                 }
