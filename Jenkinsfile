@@ -23,6 +23,12 @@ pipeline {
 
 
         stage('Build Assurance Docker Image') {
+            agent {
+                docker {
+                    image 'jenkins/jnlp-slave'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
           steps {
             script {
                 sh "pwd"
@@ -37,8 +43,5 @@ pipeline {
             }
           }
         }
-
-
-
     }
 }
