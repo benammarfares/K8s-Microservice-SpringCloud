@@ -7,7 +7,7 @@ pipeline {
       maven "3.9.8"
     }
     environment {
-        CUSTOM_WORKSPACE = "${WORKSPACE}/k8s-cloud@2"
+        CUSTOM_WORKSPACE = "$./k8s-cloud@2"
     }
     stages {
         stage('Build Config Server') {
