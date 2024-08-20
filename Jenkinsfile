@@ -24,7 +24,6 @@ pipeline {
 
         stage('Build Assurance Docker Image') {
           steps {
-           checkout scm
             script {
                 sh "pwd"
                 sh "ls -la"
