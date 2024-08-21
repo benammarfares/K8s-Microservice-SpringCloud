@@ -11,19 +11,18 @@ pipeline {
     }
     stages {
 
-        stage('Build assurance Service') {
+        stage('Build Assurance Service') {
             steps {
-                 checkout scm
+                checkout scm
                 script {
-                dir("assurance") {
-                def assuranceChanged = changesInDirectory('assurance')
-                    if (assuranceChanged) {
-                        sh 'mvn clean package -DskipTests'
+                    dir("assurance") {
+                        def assuranceChanged = changesInDirectory('assurance')
+                        if (assuranceChanged) {
+                            sh 'mvn clean package -DskipTests'
+                        } else {
+                            echo "No changes in assurance directory. Skipping build."
+                        }
                     }
-                    else {
-                        echo "No changes in assurance directory. Skipping build."
-                    }
-                }
                 }
             }
         }
@@ -32,9 +31,10 @@ pipeline {
     }
 }
 
-def changesInDirectory(dir) {
+def changesInDirectory(String dir) {
     def changes = []
-    sh "git diff --name-only HEAD^ HEAD".trim().split('\n').each { file ->
+    def output = sh(script: "git diff --name-only HEAD^ HEAD", returnStdout: true).trim()
+    output.split('\n').each { file ->
         if (file.startsWith(dir)) {
             changes.add(file)
         }
