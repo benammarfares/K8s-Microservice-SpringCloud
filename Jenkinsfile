@@ -210,7 +210,7 @@ pipeline {
             }
         }
 
-        stage('Build department-service Docker Image') {
+        stage('Build user-service Docker Image') {
           steps {
             script {
                 sh "pwd"
