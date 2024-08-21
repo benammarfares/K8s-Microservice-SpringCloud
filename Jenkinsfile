@@ -1,3 +1,8 @@
+def changedFiles() {
+    def changeSet = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
+    return (changeSet ==~ "(.*)assurance(.*)")
+}
+
 pipeline {
     options {
         skipDefaultCheckout true
@@ -14,7 +19,8 @@ pipeline {
             steps {
                 script {
                     def changedFiles = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
-                    if (changedFiles ==~ "(.*)dir1(.*)|(.*)dir2(.*)|(.*)somefile") {
+                    echo "Changed files: ${changedFiles}"
+                    if (changedFiles ==~ "(.*)assurance(.*)") {
                         echo "Changes detected in relevant files. Proceeding with the build."
                     } else {
                         echo "No relevant changes detected. Skipping the build."
@@ -24,20 +30,14 @@ pipeline {
         }
         stage('Build Assurance Service') {
             when {
-                expression { changedFiles() }
+                expression { changedFiles }
             }
             steps {
                 checkout scm
                 dir("assurance") {
-                    // Your existing build steps for Assurance Service
+                    // Additional steps for building the assurance service
                 }
             }
         }
-        // Add other stages as needed
     }
-}
-
-def changedFiles() {
-    def changeSet = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
-    return (changeSet ==~ "(.*)dir1(.*)|(.*)dir2(.*)|(.*)somefile")
 }
