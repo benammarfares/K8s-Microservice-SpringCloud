@@ -41,7 +41,7 @@ def handleJarComparison() {
 
     sh "mvn clean package -DskipTests"
 
-    def newJarFile = "${newJarPath}/your-app.jar"  // Update with your actual JAR path
+    def newJarFile = "${newJarPath}/assurance.jar"
 
     if (fileExists("${oldJarPath}.backup")) {
         def isDifferent = sh(script: "cmp -s ${oldJarPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
