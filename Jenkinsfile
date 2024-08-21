@@ -32,6 +32,7 @@ pipeline {
 }
 
 def changesInDirectory(String dir) {
+     echo "No changes in assurance directory. Skipping build."
     def changes = []
     def output = sh(script: "git diff --name-only HEAD^ HEAD", returnStdout: true).trim()
     output.split('\n').each { file ->
