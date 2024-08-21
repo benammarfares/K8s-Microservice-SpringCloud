@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        
+
         stage('Build Assurance Service') {
             when {
                 expression { changedFiles () }
