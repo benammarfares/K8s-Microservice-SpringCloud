@@ -32,13 +32,16 @@ pipeline {
 }
 
 def changesInDirectory(String dir) {
-    def output = sh(script: "git diff --name-only HEAD~1 HEAD", returnStdout: true).trim()
+    // Get the output of the status command to check if there are uncommitted changes
+    def output = sh(script: "git status --porcelain", returnStdout: true).trim()
 
-    if (output.isEmpty()) {
-        return false
-    }
-
-    def changes = output.split('\n').findAll { file ->
+    // Check for changes in the specified directory
+    def changes = output.split('\n').findAll { line ->
+        line.startsWith(' M') || line.startsWith('A ') // Check for modified (M) or added (A) files
+    }.collect { line ->
+        // Extract the file path from the status line
+        line.substring(3).trim() // Remove status prefix
+    }.findAll { file ->
         file.startsWith(dir)
     }
 
