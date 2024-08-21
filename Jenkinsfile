@@ -1,5 +1,3 @@
-def changedFiles = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
-
 pipeline {
     options {
         skipDefaultCheckout true
@@ -15,6 +13,7 @@ pipeline {
         stage('Check Changes') {
             steps {
                 script {
+                    def changedFiles = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
                     echo "Changed files: ${changedFiles}"
                     if (changedFiles ==~ "(.*)assurance(.*)") {
                         echo "Changes detected in relevant files. Proceeding with the build."
@@ -29,13 +28,12 @@ pipeline {
                 expression { changedFiles }
             }
             steps {
-                node {
-                    checkout scm
-                    dir("assurance") {
-                        // Additional steps for building the assurance service
-                    }
+                checkout scm
+                dir("assurance") {
+                    // Additional steps for building the assurance service
                 }
             }
         }
     }
 }
+def changedFiles = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
