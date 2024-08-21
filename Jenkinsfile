@@ -32,9 +32,11 @@ pipeline {
 }
 
 def changesInDirectory(String dir) {
-     echo "No changes in assurance directory. Skipping buildd."
     def changes = []
-    def output = sh(script: "git diff --name-only HEAD^ HEAD", returnStdout: true).trim()
+    // Get the output of the diff command against the last commit
+    def output = sh(script: "git diff --name-only HEAD~1 HEAD", returnStdout: true).trim()
+
+    // Split the output into lines
     output.split('\n').each { file ->
         if (file.startsWith(dir)) {
             changes.add(file)
