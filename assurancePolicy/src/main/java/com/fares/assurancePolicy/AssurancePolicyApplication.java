@@ -19,7 +19,7 @@ public class AssurancePolicyApplication {
 	public CommandLineRunner loadData() {
 		return (args) -> {
 			AssurancePolicy policy1 = AssurancePolicy.builder()
-					.policyHolder("John Doe")
+					.policyHolder("Fares Ben Ammar")
 					.policyType("Health")
 					.policyDetails("Health insurance policy")
 					.coverageDetails("Full coverage")
