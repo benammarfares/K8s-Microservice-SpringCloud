@@ -23,9 +23,11 @@ pipeline {
                 }
             }
         }
+
+        
         stage('Build Assurance Service') {
             when {
-                expression { changedFiles }
+                expression { changedFiles () }
             }
             steps {
                 checkout scm
@@ -36,4 +38,12 @@ pipeline {
         }
     }
 }
-def changedFiles = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
+
+
+
+
+
+def changedFiles() {
+    def changeSet = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
+    return (changeSet ==~ "(.*)assurance(.*)")
+}
