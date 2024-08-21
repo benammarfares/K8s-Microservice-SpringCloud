@@ -31,9 +31,9 @@ pipeline {
     }
 }
 
-def handleJarComparison(String oldJarPath, String newJarPath) {
+def handleJarComparison() {
     def oldJarPath = '/var/jenkins_home/workspace/k8s-cloud@2/assurance/target/assurance.jar'
-     def newJarPath = '/var/jenkins_home/workspace/k8s-cloud@2/assurance/target/assurance.jar'
+    def newJarPath = '/var/jenkins_home/workspace/k8s-cloud@2/assurance/target/assurance.jar'
 
     if (fileExists(oldJarPath)) {
         sh "cp ${oldJarPath} ${oldJarPath}.backup"
@@ -43,7 +43,6 @@ def handleJarComparison(String oldJarPath, String newJarPath) {
 
     def newJarFile = "${newJarPath}/your-app.jar"  // Update with your actual JAR path
 
-    // Step 4: Compare old and new JAR files
     if (fileExists("${oldJarPath}.backup")) {
         def isDifferent = sh(script: "cmp -s ${oldJarPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
         return isDifferent.contains('different')
