@@ -27,9 +27,9 @@ public class AssuranceService {
          var assuranceClaim = assuranceRepository.findById(id).orElse(AssuranceClaim.builder()
                  .claimName("NOT_FOUND")
                  .claimDate(null)
-                 .claimDescription("No description HERE ")
+                 .claimDescription("No description ")
                  .claimAmount(0.0)
-                 .claimStatus("Unknown")
+                 .claimStatus("Unknownn")
                  .claimProcessedDate(null)
                  .claimPayoutAmount(0.0)
                  .build());
