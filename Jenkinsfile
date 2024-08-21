@@ -13,7 +13,7 @@ pipeline {
         stage('Check Changes') {
             steps {
                 script {
-                    def changedFiles = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
+                    def changedFiles = sh(script: 'git log -3 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
                     echo "Changed files: ${changedFiles}"
                     if (changedFiles ==~ "(.*)assurance(.*)") {
                         echo "Changes detected in relevant files. Proceeding with the build."
