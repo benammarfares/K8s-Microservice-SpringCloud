@@ -17,11 +17,7 @@ pipeline {
                 script {
                     dir("assurance") {
                         def assuranceChanged = handleJarComparison()
-                        if (assuranceChanged) {
-                            echo " changes in assurance directory."
-                        } else {
-                            echo "No changes in assurance directory. Skipping build."
-                        }
+ 
                     }
                 }
             }
