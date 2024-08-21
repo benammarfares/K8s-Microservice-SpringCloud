@@ -13,38 +13,22 @@ pipeline {
 
         stage('Build assurance Service') {
             steps {
+                 checkout scm
                 script {
-                    def assuranceChanged = changesInDirectory('assurance')
+                dir("assurance") {
+                def assuranceChanged = changesInDirectory('assurance')
                     if (assuranceChanged) {
-                        checkout scm
-                        dir("assurance") {
-                            sh 'mvn clean package -DskipTests'
-                        }
-                    } else {
+                        sh 'mvn clean package -DskipTests'
+                    }
+                    else {
                         echo "No changes in assurance directory. Skipping build."
                     }
+                }
                 }
             }
         }
 
-        stage('Build assurance Docker Image') {
-            steps {
-                script {
-                    def assuranceChanged = changesInDirectory('assurance')
-                    if (assuranceChanged) {
-                        dir("${CUSTOM_WORKSPACE}/assurance") {
-                            sh 'docker build -t fares121/assurance-service:1.0.0 .'
-                            withCredentials([string(credentialsId: 'Docker', variable: 'docker_password')]) {
-                                sh 'docker login -u fares121 -p ${docker_password}'
-                                sh 'docker push fares121/assurance-service:1.0.0'
-                            }
-                        }
-                    } else {
-                        echo "No changes in assurance directory. Skipping Docker image build."
-                    }
-                }
-            }
-        }
+
     }
 }
 
