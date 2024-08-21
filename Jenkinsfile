@@ -32,8 +32,12 @@ pipeline {
     }
 }
 
-def changesInDirectory(directory) {
-    def changes = currentBuild.changeSets.collect { it.items }.flatten()
-    def changedPaths = changes.collect { it.paths }
-    changedPaths.flatten().any { it.startsWith("${directory}/") }
+def changesInDirectory(dir) {
+    def changes = []
+    sh "git diff --name-only HEAD^ HEAD".trim().split('\n').each { file ->
+        if (file.startsWith(dir)) {
+            changes.add(file)
+        }
+    }
+    return changes.size() > 0
 }
