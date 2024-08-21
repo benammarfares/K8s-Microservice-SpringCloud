@@ -29,7 +29,7 @@ pipeline {
 
 def handleJarComparison() {
     def oldJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
-    def newJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
+    def newJarFile = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
 
     if (fileExists(oldJarPath)) {
         sh "cp ${oldJarPath} ${oldJarPath}.backup"
