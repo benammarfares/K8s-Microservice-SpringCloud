@@ -17,7 +17,7 @@ pipeline {
                 script {
                     dir("assurance") {
                         def assuranceChanged = handleJarComparison()
- 
+
                     }
                 }
             }
@@ -37,7 +37,6 @@ def handleJarComparison() {
 
     sh "mvn clean package -DskipTests"
 
-    def newJarFile = "${newJarPath}/assurance.jar"
 
         def isDifferent = sh(script: "cmp -s ${oldJarPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
         return isDifferent.contains('different')
