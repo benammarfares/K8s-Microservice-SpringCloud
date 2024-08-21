@@ -8,8 +8,8 @@ pipeline {
     }
     environment {
         CUSTOM_WORKSPACE = "/var/jenkins_home/workspace/k8s-cloud@2"
-        OLD_JAR_PATH = "/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar"
-        NEW_JAR_FILE = "/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar"
+        OLD_JAR_PATH = "/var/jenkins_home/workspace/k8s-cloud/assurance/target"
+        NEW_JAR_FILE = "/var/jenkins_home/workspace/k8s-cloud/assurance/target"
     }
     stages {
 
@@ -30,11 +30,10 @@ pipeline {
 }
 
 def handleJarComparison(String oldJarPath, String newJarFile) {
-    def backupJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assuranceBackup.jar'  // New backup path
-     sh "cp ${oldJarPath} ${backupJarPath}"
+     sh "cp ${oldJarPath}/assurance.jar ${oldJarPath}/assuranceBackup.jar"
      sh "mvn clean package -DskipTests"
 
-    def isDifferent = sh(script: "cmp -s ${backupJarPath} ${newJarFile} || echo 'different'", returnStdout: true).trim()
+    def isDifferent = sh(script: "cmp -s ${oldJarPath}/assuranceBackup.jar ${newJarFile}.assurance.jar || echo 'different'", returnStdout: true).trim()
 
     // Step 4: Check for differences
     if (isDifferent.contains('different')) {
