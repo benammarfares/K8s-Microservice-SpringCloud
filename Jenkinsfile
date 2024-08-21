@@ -32,18 +32,14 @@ pipeline {
 }
 
 def changesInDirectory(String dir) {
-    // Get the output of the status command to check if there are uncommitted changes
-    def output = sh(script: "git status --porcelain", returnStdout: true).trim()
+    // Fetch the latest changes from the remote repository
+    sh "git fetch origin"
 
-    // Check for changes in the specified directory
-    def changes = output.split('\n').findAll { line ->
-        line.startsWith(' M') || line.startsWith('A ') // Check for modified (M) or added (A) files
-    }.collect { line ->
-        // Extract the file path from the status line
-        line.substring(3).trim() // Remove status prefix
-    }.findAll { file ->
-        file.startsWith(dir)
-    }
+    // Compare the local 'assurance' directory against the remote version
+    def output = sh(script: "git diff --name-only origin/main -- ${dir}", returnStdout: true).trim()
+
+    // Check if there are any changes in the specified directory
+    def changes = output.split('\n').findAll { it.startsWith(dir) }
 
     return changes.size() > 0
 }
