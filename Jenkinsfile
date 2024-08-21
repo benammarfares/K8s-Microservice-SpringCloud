@@ -16,7 +16,7 @@ pipeline {
                 checkout scm
                 script {
                     dir("assurance") {
-                        def assuranceChanged = changesInDirectory('assurance')
+                        def assuranceChanged = handleJarComparison()
                         if (assuranceChanged) {
                             echo " changes in assurance directory."
                         } else {
