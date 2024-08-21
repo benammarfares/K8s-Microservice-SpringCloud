@@ -41,7 +41,7 @@ def handleJarComparison(String oldJarPath, String newJarFile) {
     sh "mvn clean package -DskipTests"
 
     // Compare the old JAR backup with the newly built JAR
-    def isDifferent = sh(script: "cmp -s ${oldJarPath}/assuranceBackup.jar ${newJarFile} || echo 'different'", returnStdout: true).trim()
+    def isDifferent = sh(script: "cmp -s ${oldJarPath}/assuranceBackup.jar ${newJarFile}/assurance.jar || echo 'different'", returnStdout: true).trim()
 
     // Check for differences
     if (isDifferent.contains('different')) {
