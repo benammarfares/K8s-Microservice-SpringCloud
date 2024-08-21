@@ -18,7 +18,7 @@ pipeline {
                     dir("assurance") {
                         def assuranceChanged = changesInDirectory('assurance')
                         if (assuranceChanged) {
-                            sh 'mvn clean package -DskipTests'
+                            echo " changes in assurance directory."
                         } else {
                             echo "No changes in assurance directory. Skipping build."
                         }
@@ -31,15 +31,23 @@ pipeline {
     }
 }
 
-def changesInDirectory(String dir) {
-    // Fetch the latest changes from the remote repository without merging
-    sh "git fetch origin main" // Adjust the branch name if needed
+def handleJarComparison(String oldJarPath, String newJarPath) {
+    def oldJarPath = '/var/jenkins_home/workspace/k8s-cloud@2/assurance/target/assurance.jar'
+     def newJarPath = '/var/jenkins_home/workspace/k8s-cloud@2/assurance/target/assurance.jar'
 
-    // Compare the local assurance directory against the fetched remote version
-    def output = sh(script: "git diff --name-only HEAD origin/main -- ${dir}", returnStdout: true).trim()
+    if (fileExists(oldJarPath)) {
+        sh "cp ${oldJarPath} ${oldJarPath}.backup"
+    }
 
-    // Check for changes in the specified directory
-    def changes = output.split('\n').findAll { it.startsWith(dir) }
+    sh "mvn clean package -DskipTests"
 
-    return changes.size() > 0
+    def newJarFile = "${newJarPath}/your-app.jar"  // Update with your actual JAR path
+
+    // Step 4: Compare old and new JAR files
+    if (fileExists("${oldJarPath}.backup")) {
+        def isDifferent = sh(script: "cmp -s ${oldJarPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
+        return isDifferent.contains('different')
+    } else {
+        return true
+    }
 }
