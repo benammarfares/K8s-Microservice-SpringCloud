@@ -29,7 +29,7 @@ public class AssuranceService {
                  .claimDate(null)
                  .claimDescription("No description ")
                  .claimAmount(0.0)
-                 .claimStatus("Unknownnn")
+                 .claimStatus("Unknownn")
                  .claimProcessedDate(null)
                  .claimPayoutAmount(0.0)
                  .build());
