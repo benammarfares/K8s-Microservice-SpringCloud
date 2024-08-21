@@ -32,13 +32,13 @@ pipeline {
 }
 
 def changesInDirectory(String dir) {
-    // Fetch the latest changes from the remote repository
+    // Ensure the repository is up to date
     sh "git fetch origin"
 
-    // Compare the local 'assurance' directory against the remote version
-    def output = sh(script: "git diff --name-only origin/main -- ${dir}", returnStdout: true).trim()
+    // Compare the local assurance directory against the remote
+    def output = sh(script: "git diff --name-only HEAD origin/main -- ${dir}", returnStdout: true).trim()
 
-    // Check if there are any changes in the specified directory
+    // Check for changes in the specified directory
     def changes = output.split('\n').findAll { it.startsWith(dir) }
 
     return changes.size() > 0
