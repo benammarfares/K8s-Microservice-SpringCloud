@@ -31,16 +31,9 @@ def handleJarComparison() {
     def oldJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
     def newJarFile = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
     def backupJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assuranceBackup.jar'  // New backup path
+     sh "cp ${oldJarPath} ${backupJarPath}"
+     sh "mvn clean package -DskipTests"
 
-    // Step 1: Backup the old JAR if it exists
-    if (fileExists(oldJarPath)) {
-        sh "cp ${oldJarPath} ${backupJarPath}"  // Create a backup with the new name
-    }
-
-    // Step 2: Build the new JAR
-    sh "mvn clean package -DskipTests"
-
-    // Step 3: Compare the old JAR backup with the new JAR
     def isDifferent = sh(script: "cmp -s ${backupJarPath} ${newJarFile} || echo 'different'", returnStdout: true).trim()
 
     // Step 4: Check for differences
