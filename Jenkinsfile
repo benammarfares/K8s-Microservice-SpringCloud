@@ -32,15 +32,15 @@ pipeline {
 }
 
 def changesInDirectory(String dir) {
-    def changes = []
-    // Get the output of the diff command against the last commit
     def output = sh(script: "git diff --name-only HEAD~1 HEAD", returnStdout: true).trim()
 
-    // Split the output into lines
-    output.split('\n').each { file ->
-        if (file.startsWith(dir)) {
-            changes.add(file)
-        }
+    if (output.isEmpty()) {
+        return false
     }
+
+    def changes = output.split('\n').findAll { file ->
+        file.startsWith(dir)
+    }
+
     return changes.size() > 0
 }
