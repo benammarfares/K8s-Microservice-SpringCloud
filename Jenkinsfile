@@ -8,6 +8,8 @@ pipeline {
     }
     environment {
         CUSTOM_WORKSPACE = "/var/jenkins_home/workspace/k8s-cloud@2"
+        OLD_JAR_PATH = "/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar"
+        NEW_JAR_FILE = "/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar"
     }
     stages {
 
@@ -16,7 +18,7 @@ pipeline {
                 checkout scm
                 script {
                     dir("assurance") {
-                        def assuranceChanged = handleJarComparison()
+                        def assuranceChanged = handleJarComparison(${OLD_JAR_PATH}, ${NEW_JAR_FILE})
 
                     }
                 }
@@ -27,9 +29,7 @@ pipeline {
     }
 }
 
-def handleJarComparison() {
-    def oldJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
-    def newJarFile = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
+def handleJarComparison(String oldJarPath, String newJarFile) {
     def backupJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assuranceBackup.jar'  // New backup path
      sh "cp ${oldJarPath} ${backupJarPath}"
      sh "mvn clean package -DskipTests"
