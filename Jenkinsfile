@@ -29,9 +29,11 @@ pipeline {
                 expression { changedFiles }
             }
             steps {
-                checkout scm
-                dir("assurance") {
-                    // Additional steps for building the assurance service
+                node {
+                    checkout scm
+                    dir("assurance") {
+                        // Additional steps for building the assurance service
+                    }
                 }
             }
         }
