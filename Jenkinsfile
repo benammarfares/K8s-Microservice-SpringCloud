@@ -18,7 +18,7 @@ pipeline {
                 checkout scm
                 script {
                     dir("assurance") {
-                        def assuranceChanged = handleJarComparison(${OLD_JAR_PATH}, ${NEW_JAR_FILE})
+                        def assuranceChanged = handleJarComparison(OLD_JAR_PATH, NEW_JAR_FILE)
 
                     }
                 }
