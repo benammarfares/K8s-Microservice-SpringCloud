@@ -39,7 +39,6 @@ def handleJarComparison() {
 
 
         def isDifferent = sh(script: "cmp -s ${oldJarPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
-        return isDifferent.contains('different')
 
         if (isDifferent.contains('different')) {
             echo "Jar files are different"
