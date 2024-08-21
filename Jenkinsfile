@@ -43,10 +43,15 @@ def handleJarComparison() {
 
     def newJarFile = "${newJarPath}/assurance.jar"
 
-    if (fileExists("${oldJarPath}.backup")) {
         def isDifferent = sh(script: "cmp -s ${oldJarPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
         return isDifferent.contains('different')
-    } else {
-        return true
-    }
+
+        if isDifferent.contains('different') {
+            echo "Jar files are different"
+            return true
+        } else {
+            echo "Jar files are same"
+            return false
+        }
+
 }
