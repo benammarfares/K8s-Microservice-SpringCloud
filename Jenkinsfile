@@ -30,15 +30,15 @@ pipeline {
 def handleJarComparison() {
     def oldJarPath = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
     def newJarFile = '/var/jenkins_home/workspace/k8s-cloud/assurance/target/assurance.jar'
-
+    def tempJarBackupPath = '/var/jenkins_home/workspace/k8s-cloud/assurance@tmp/assurance.jar'
     if (fileExists(oldJarPath)) {
-        sh "cp ${oldJarPath} ${oldJarPath}.backup"
+        sh "cp ${oldJarPath} ${tempJarBackupPath}"
     }
 
     sh "mvn clean package -DskipTests"
 
 
-        def isDifferent = sh(script: "cmp -s ${oldJarPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
+        def isDifferent = sh(script: "cmp -s ${tempJarBackupPath}.backup ${newJarFile} || echo 'different'", returnStdout: true).trim()
 
         if (isDifferent.contains('different')) {
             echo "Jar files are different"
