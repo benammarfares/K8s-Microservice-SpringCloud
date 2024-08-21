@@ -44,6 +44,6 @@ pipeline {
 
 
 def changedFiles() {
-    def changeSet = sh(script: 'git log -2 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
-    return (changeSet ==~ "(.*)assurance(.*)")
+    def changeSet = sh(script: 'git log -3 --name-only --oneline --pretty="format:"', returnStdout: true).trim()
+    return (changeSet ==~ "(.*)assurance.java(.*)")
 }
