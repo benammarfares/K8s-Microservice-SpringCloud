@@ -1,19 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('Test') {
             steps {
-                checkout scm
+                withKubeConfig(caCertificate: '', clusterName: 'minikube', contextName: 'minikube', credentialsId: 'minikube-jenkins-secret', namespace: '', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.49.2:8443') {
+                        sh "kubectl get ns"
+                }
             }
-        }
-        stage('Deploying React.js container to Kubernetes') {
-          steps {
-            script {
-              kubeconfig(credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.49.2:8443') {
-                echo 'Deploying React.js container to Kubernetes'
-              }
-            }
-          }
         }
     }
 }
