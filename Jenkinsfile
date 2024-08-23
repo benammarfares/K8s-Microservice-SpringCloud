@@ -7,8 +7,8 @@ pipeline {
             }
         }
         stage('Run kubectl apply') {
-            steps {
-                sh 'minikube kubectl -- apply -f config-server.yml'
+            withKubeConfig(credentialsId: 'mykubeconfig') {
+                sh 'kubectl apply -f config-server.yml'
             }
         }
     }
