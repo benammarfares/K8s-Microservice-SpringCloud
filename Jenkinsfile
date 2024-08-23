@@ -6,12 +6,12 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Run kubectl apply') {
-            steps {
-                withKubeConfig(credentialsId: 'mykubeconfig') {
-                    sh 'kubectl apply -f config-server.yml'
-                }
+        stage('Deploying React.js container to Kubernetes') {
+          steps {
+            script {
+              kubernetesDeploy(configs: "config-server.yaml")
             }
+          }
         }
     }
 }
