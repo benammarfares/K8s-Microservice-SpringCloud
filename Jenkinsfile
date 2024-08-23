@@ -5,6 +5,7 @@ pipeline {
             steps {
                 withKubeConfig(credentialsId: 'mykubeconfig') {
                     sh 'kubectl get all'
+                    sh 'kubectl apply -f config-server.yml'
                 }
             }
         }
