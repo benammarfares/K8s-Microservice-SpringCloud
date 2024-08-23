@@ -6,10 +6,9 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Run kubectl get all') {
+        stage('Run kubectl apply') {
             steps {
-                sh 'alias kubectl="minikube kubectl --"'
-                sh 'kubectl apply -f config-server.yml'
+                sh 'minikube kubectl -- apply -f config-server.yml'
             }
         }
     }
