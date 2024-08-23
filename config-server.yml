@@ -17,7 +17,6 @@ spec:
       containers:
         - name: cloud-config-server-app
           image: fares121/cloud-config-server:1.0.0
-          imagePullPolicy: Always
           ports:
             - containerPort: 9296
 
