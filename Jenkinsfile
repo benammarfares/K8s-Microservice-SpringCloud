@@ -7,8 +7,10 @@ pipeline {
             }
         }
         stage('Run kubectl apply') {
-            withKubeConfig(credentialsId: 'mykubeconfig') {
-                sh 'kubectl apply -f config-server.yml'
+            steps {
+                withKubeConfig(credentialsId: 'mykubeconfig') {
+                    sh 'kubectl apply -f config-server.yml'
+                }
             }
         }
     }
