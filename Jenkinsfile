@@ -9,7 +9,9 @@ pipeline {
         stage('Deploying React.js container to Kubernetes') {
           steps {
             script {
-              deployKubeConfig(configs: "config-server.yaml")
+              kubeconfig(credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.49.2:8443') {
+                echo 'Deploying React.js container to Kubernetes'
+              }
             }
           }
         }
