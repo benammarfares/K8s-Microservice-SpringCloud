@@ -24,18 +24,17 @@ pipeline {
                         echo $! > eureka-lb.pid
                         '''
                         sh 'sleep 5'
-
                 }
             }
         }
         stage('Exposing Gateway') {
             steps {
                 withKubeConfig(credentialsId: 'mykubeconfig') {
-                sh 'kubectl port-forward service/cloud-gateway-svc 30950:80'
-                sh 'sleep 5'
                 sh '''
-                curl -m 5 http://localhost:31744 || echo "Failed to reach Eureka service"
+                kubectl port-forward service/cloud-gateway-svc 30950:80 &
+                echo $! > cloud-gateway-svc.pid
                 '''
+                sh 'sleep 5'
                 }
             }
         }
