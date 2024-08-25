@@ -13,7 +13,6 @@ pipeline {
                         sh 'kubectl delete -f ./'
                         sh 'kubectl get all'
                         sh 'kubectl apply -f ./'
-                        sh 'minikube service eureka-lb'
                     }
             }
         }
