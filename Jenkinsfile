@@ -30,6 +30,9 @@ pipeline {
                 withKubeConfig(credentialsId: 'mykubeconfig') {
                 sh 'kubectl port-forward service/cloud-gateway-svc 30950:80'
                 sh 'sleep 5'
+                sh '''
+                curl -m 5 http://localhost:31744 || echo "Failed to reach Eureka service"
+                '''
                 }
             }
         }
