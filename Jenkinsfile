@@ -10,8 +10,10 @@ pipeline {
                 sh 'ls -la'
                 sh 'git rev-parse HEAD'
                     withKubeConfig(credentialsId: 'mykubeconfig') {
+                        sh 'kubectl delete -f ./'
                         sh 'kubectl get all'
                         sh 'kubectl apply -f ./'
+                        sh 'minikube service eureka-lb'
                     }
             }
         }
