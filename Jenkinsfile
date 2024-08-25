@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Exposing Eureka Cloud Service') {
             steps {
-                sh 'kubectl port-forward service/eureka-lb 8761:80'
+                sh 'kubectl port-forward service/eureka-lb 31744:80'
                 sh 'sleep 5'
 
             }
