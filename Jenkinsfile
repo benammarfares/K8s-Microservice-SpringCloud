@@ -17,6 +17,18 @@ pipeline {
                     }
             }
         }
+        stage('Exposing Eureka Cloud Service') {
+            steps {
+                sh 'kubectl port-forward service/eureka-lb 8761:80'
+
+            }
+        }
+        stage('Exposing Gateway') {
+            steps {
+                sh 'kubectl port-forward service/cloud-gateway-svc 30950:80'
+
+            }
+        }
     }
 
     post {
