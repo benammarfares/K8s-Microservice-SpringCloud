@@ -19,8 +19,11 @@ pipeline {
         stage('Exposing Eureka Cloud Service') {
             steps {
                 withKubeConfig(credentialsId: 'mykubeconfig') {
-                    sh 'kubectl port-forward service/eureka-lb 31744:80'
-                    sh 'sleep 5'
+                        sh '''
+                        kubectl port-forward service/eureka-lb 31744:80 &
+                        echo $! > eureka-lb.pid
+                        '''
+                        sh 'sleep 5'
 
                 }
             }
