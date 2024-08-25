@@ -18,16 +18,19 @@ pipeline {
         }
         stage('Exposing Eureka Cloud Service') {
             steps {
-                sh 'kubectl port-forward service/eureka-lb 31744:80'
-                sh 'sleep 5'
+                withKubeConfig(credentialsId: 'mykubeconfig') {
+                    sh 'kubectl port-forward service/eureka-lb 31744:80'
+                    sh 'sleep 5'
 
+                }
             }
         }
         stage('Exposing Gateway') {
             steps {
+                withKubeConfig(credentialsId: 'mykubeconfig') {
                 sh 'kubectl port-forward service/cloud-gateway-svc 30950:80'
                 sh 'sleep 5'
-
+                }
             }
         }
     }
