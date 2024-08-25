@@ -12,19 +12,7 @@ pipeline {
                     withKubeConfig(credentialsId: 'mykubeconfig') {
                         sh 'kubectl get all'
                         sh 'kubectl apply -f ./'
-
-                    sh '''
-                    for deployment in $(kubectl get deployments -o jsonpath='{.items[*].metadata.name}'); do
-                        kubectl rollout status deployment/$deployment
-                    done
-                    '''
-
-                    sh '''
-                    for statefulset in $(kubectl get statefulsets -o jsonpath='{.items[*].metadata.name}'); do
-                        kubectl rollout status statefulset/$statefulset
-                    done
-                    '''
-                    sh 'kubectl get all'
+                        sh 'kubectl get all'
                     }
             }
         }
