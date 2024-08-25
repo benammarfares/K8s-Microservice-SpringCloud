@@ -1,13 +1,25 @@
 pipeline {
     agent any
+
     stages {
-        stage('Test') {
+        stage('Checkout') {
             steps {
-                withKubeConfig(credentialsId: 'mykubeconfig') {
-                    sh 'kubectl get all'
-                    sh 'kubectl apply -f config-server.yml'
-                }
+                cleanWs()
+                git branch: 'main',
+                    url: 'https://github.com/benammarfares/Kubernetes-yml-for-service-deploy.git'
+                sh 'ls -la'
+                sh 'git rev-parse HEAD'
+                    withKubeConfig(credentialsId: 'mykubeconfig') {
+                        sh 'kubectl get all'
+                        sh 'kubectl apply -f ./'
+                    }
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
