@@ -18,6 +18,9 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("cloud-config-server") {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }
@@ -50,6 +53,9 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("service-registry") {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }
@@ -81,6 +87,9 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("cloud-gateway") {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }
@@ -111,6 +120,9 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("assurance") {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }
@@ -141,6 +153,9 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("assurancePolicy") {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }
@@ -172,6 +187,9 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("department-service") {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }
@@ -204,6 +222,9 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("user-service") {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }

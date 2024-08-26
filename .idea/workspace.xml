@@ -7,6 +7,11 @@
     <list default="true" id="be75db00-235b-43c4-b4f8-f8500f4246b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/department-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +65,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CloudConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cloud-config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dailycodebuffer.cloud.CloudConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CloudGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="cloud-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.dailycodebuffer.cloud.gateway.CloudGatewayApplication" />
@@ -109,7 +121,7 @@
       <workItem from="1724425762472" duration="7229000" />
       <workItem from="1724605616178" duration="3891000" />
       <workItem from="1724664954149" duration="523000" />
-      <workItem from="1724665804767" duration="1893000" />
+      <workItem from="1724665804767" duration="2747000" />
     </task>
     <servers />
   </component>
