@@ -87,9 +87,6 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("cloud-gateway") {
-                    withSonarQubeEnv('sonarserver') {
-                        sh 'mvn sonar:sonar'
-                    }
                       sh 'mvn clean package -DskipTests'
                     }
                 }
