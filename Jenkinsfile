@@ -227,7 +227,7 @@ pipeline {
         }
 
 
-        stage('Checkout') {
+        stage('Checkout to the kubernetes github repo') {
             steps {
                 cleanWs()
                 git branch: 'main',
