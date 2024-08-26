@@ -75,6 +75,7 @@ pipeline {
                     sh "pwd"
                     sh "ls -la"
                     dir("assurance") {
+                    sh 'mvn compiler:compile'
                     withSonarQubeEnv('sonarserver') {
                         sh 'mvn sonar:sonar'
                     }
