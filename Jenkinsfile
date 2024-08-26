@@ -25,7 +25,7 @@ pipeline {
         }
 
 
-        stage('Build Config Docker Image') {
+        stage('Push Config Docker Image') {
           steps {
             script {
                 sh "pwd"
@@ -56,7 +56,7 @@ pipeline {
             }
         }
 
-        stage('Build Service Registry Docker Image') {
+        stage('Push Service Registry Docker Image') {
           steps {
             script {
                 sh "pwd"
@@ -87,7 +87,7 @@ pipeline {
             }
         }
 
-        stage('Build cloud-gateway Docker Image') {
+        stage('Push cloud-gateway Docker Image') {
           steps {
             script {
                 sh "pwd"
@@ -117,7 +117,7 @@ pipeline {
             }
         }
 
-        stage('Build assurance Docker Image') {
+        stage('Push assurance Docker Image') {
           steps {
             script {
                 sh "pwd"
@@ -147,7 +147,7 @@ pipeline {
             }
         }
 
-        stage('Build assurancePolicy Docker Image') {
+        stage('Push assurancePolicy Docker Image') {
           steps {
             script {
                 sh "pwd"
@@ -178,7 +178,7 @@ pipeline {
             }
         }
 
-        stage('Build department-service Docker Image') {
+        stage('Push department-service Docker Image') {
           steps {
             script {
                 sh "pwd"
@@ -210,7 +210,7 @@ pipeline {
             }
         }
 
-        stage('Build user-service Docker Image') {
+        stage('Push user-service Docker Image') {
           steps {
             script {
                 sh "pwd"
