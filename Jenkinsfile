@@ -7,7 +7,7 @@ pipeline {
       maven "3.9.8"
     }
     environment {
-        CUSTOM_WORKSPACE = "/var/jenkins_home/workspace/k8s-cloud@2"
+        CUSTOM_WORKSPACE = "/var/jenkins_home/workspace/testingMInikube@2"
     }
     stages {
         stage('Build Config Server') {
@@ -25,7 +25,7 @@ pipeline {
         }
 
 
-        stage('Build Assurance Docker Image') {
+        stage('Build Config Docker Image') {
           steps {
             script {
                 sh "pwd"
