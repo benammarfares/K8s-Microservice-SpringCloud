@@ -7,7 +7,6 @@
     <list default="true" id="be75db00-235b-43c4-b4f8-f8500f4246b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +116,7 @@
       <workItem from="1724425762472" duration="7229000" />
       <workItem from="1724605616178" duration="3891000" />
       <workItem from="1724664954149" duration="523000" />
-      <workItem from="1724665804767" duration="4591000" />
+      <workItem from="1724665804767" duration="6395000" />
     </task>
     <servers />
   </component>
