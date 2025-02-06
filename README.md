@@ -50,8 +50,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![Image](https://github.com/user-attachments/assets/84c65343-71b5-413f-8af4-5171cd7ea05f)<br>
-
+![Image](https://github.com/user-attachments/assets/30429893-97ac-4c46-bfca-cb579e2cb61e)
 * This project have 7 services.<br>
 * Assurance and AssurancePolicy that will store their data via Postgres .<br>
 * Department and User that will store their data via H2 database. <br>
