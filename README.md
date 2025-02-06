@@ -50,8 +50,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![Image](https://github.com/user-attachments/assets/1d45953b-5539-4caa-97e6-68e03851aeb5)
-<br>
+![Image](https://github.com/user-attachments/assets/84c65343-71b5-413f-8af4-5171cd7ea05f)<br>
 
 * This project have 7 services.<br>
 * Assurance and AssurancePolicy that will store their data via Postgres .<br>
