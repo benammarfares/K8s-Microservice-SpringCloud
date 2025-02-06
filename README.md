@@ -50,8 +50,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![Pull configuration (1)](https://github.com/user-attachments/assets/0b6f802b-cf68-4d7e-bb38-e8b6a6c2d5d6)
-
+![Image](https://github.com/user-attachments/assets/1d45953b-5539-4caa-97e6-68e03851aeb5)
 <br>
 
 * This project have 7 services.<br>
